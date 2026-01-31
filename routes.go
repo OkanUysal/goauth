@@ -12,7 +12,7 @@ func (s *Service) RegisterRoutes(router *gin.Engine, baseURL string) {
 		// Public routes
 		authGroup.POST("/guest", s.GuestLogin)
 		authGroup.POST("/refresh", s.RefreshToken)
-		
+
 		// Protected routes
 		authGroup.GET("/profile", s.AuthMiddleware(), s.GetProfile)
 	}
@@ -23,7 +23,7 @@ func (s *Service) RegisterRoutesWithGroup(group *gin.RouterGroup) {
 	// Public routes
 	group.POST("/guest", s.GuestLogin)
 	group.POST("/refresh", s.RefreshToken)
-	
+
 	// Protected routes
 	group.GET("/profile", s.AuthMiddleware(), s.GetProfile)
 }

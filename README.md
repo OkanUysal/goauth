@@ -11,6 +11,15 @@ A flexible, plug-and-play authentication library for Go web applications using G
 - 🔌 Easy integration - just provide DB connection and config
 - 📦 Zero boilerplate - routes are automatically registered
 
+## Dependencies
+
+GoAuth uses the following libraries:
+
+- [gin-gonic/gin](https://github.com/gin-gonic/gin) v1.10.0 - HTTP web framework
+- [golang-jwt/jwt](https://github.com/golang-jwt/jwt) v5.2.1 - JSON Web Token implementation
+- [google/uuid](https://github.com/google/uuid) v1.6.0 - UUID generation
+- [lib/pq](https://github.com/lib/pq) v1.10.9 - PostgreSQL driver
+
 ## Installation
 
 ```bash
@@ -24,7 +33,7 @@ go get github.com/OkanUysal/goauth
 Create a users table in your PostgreSQL database:
 
 ```sql
-CREATE TABLE outcome_user (
+CREATE TABLE users (
     id UUID PRIMARY KEY,
     guest_id UUID UNIQUE NOT NULL,
     google_id TEXT UNIQUE,
@@ -172,7 +181,7 @@ If you want to use a different table name:
 
 ```go
 authConfig := goauth.DefaultConfig(db, jwtSecret)
-authConfig.TableName = "users" // Use "users" instead of "outcome_user"
+authConfig.TableName = "my_users" // Use custom table name (default: "users")
 ```
 
 ## API Reference
