@@ -14,7 +14,7 @@ A flexible, plug-and-play authentication library for Go web applications using G
 ## Installation
 
 ```bash
-go get github.com/okanyusl/goauth
+go get github.com/OkanUysal/goauth
 ```
 
 ## Quick Start
@@ -44,7 +44,7 @@ package main
 import (
     "database/sql"
     "github.com/gin-gonic/gin"
-    "github.com/okanyusl/goauth"
+    "github.com/OkanUysal/goauth"
     _ "github.com/lib/pq"
 )
 
