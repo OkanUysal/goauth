@@ -1,4 +1,4 @@
-# GoAuth - Reusable Authentication Library for Go
+# go-auth - Reusable Authentication Library for Go
 
 A flexible, plug-and-play authentication library for Go web applications using Gin framework.
 
@@ -13,7 +13,7 @@ A flexible, plug-and-play authentication library for Go web applications using G
 
 ## Dependencies
 
-GoAuth uses the following libraries:
+go-auth uses the following libraries:
 
 - [gin-gonic/gin](https://github.com/gin-gonic/gin) v1.10.0 - HTTP web framework
 - [golang-jwt/jwt](https://github.com/golang-jwt/jwt) v5.2.1 - JSON Web Token implementation
@@ -23,7 +23,7 @@ GoAuth uses the following libraries:
 ## Installation
 
 ```bash
-go get github.com/OkanUysal/goauth
+go get github.com/OkanUysal/go-auth
 ```
 
 ## Quick Start
@@ -53,7 +53,7 @@ package main
 import (
     "database/sql"
     "github.com/gin-gonic/gin"
-    "github.com/OkanUysal/goauth"
+    "github.com/OkanUysal/go-auth"
     _ "github.com/lib/pq"
 )
 
@@ -62,8 +62,8 @@ func main() {
     db, _ := sql.Open("postgres", "your-connection-string")
     
     // Create auth service with default config
-    authConfig := goauth.DefaultConfig(db, "your-jwt-secret-key")
-    authService := goauth.NewService(authConfig)
+    authConfig := auth.DefaultConfig(db, "your-jwt-secret-key")
+    authService := auth.NewService(authConfig)
     
     // Setup Gin router
     router := gin.Default()
@@ -119,7 +119,7 @@ Authorization: Bearer eyJhbGc...
 ### Custom Configuration
 
 ```go
-authConfig := &goauth.Config{
+authConfig := &auth.Config{
     DB:                   db,
     TableName:            "my_users_table",  // Custom table name
     JWTSecret:            "my-secret",
@@ -158,8 +158,8 @@ adminRoutes.Use(authService.AuthMiddleware(), authService.AdminMiddleware())
 
 ```go
 func myHandler(c *gin.Context) {
-    userID, _ := goauth.GetUserID(c)
-    userRole, _ := goauth.GetUserRole(c)
+    userID, _ := auth.GetUserID(c)
+    userRole, _ := auth.GetUserRole(c)
     
     // Use userID and userRole...
 }
@@ -180,7 +180,7 @@ authService.RegisterRoutesWithGroup(authGroup)
 If you want to use a different table name:
 
 ```go
-authConfig := goauth.DefaultConfig(db, jwtSecret)
+authConfig := auth.DefaultConfig(db, jwtSecret)
 authConfig.TableName = "my_users" // Use custom table name (default: "users")
 ```
 

@@ -1,4 +1,4 @@
-module github.com/OkanUysal/goauth
+module github.com/OkanUysal/go-auth
 
 go 1.22
 
